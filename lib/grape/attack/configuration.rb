@@ -2,6 +2,26 @@ module Grape
   module Attack
     class Configuration
 
+      class Global
+        attr_accessor :redis
+        def initialize
+          
+        end
+      end
+      class << self
+        def global
+          if block_given?
+            yield global_config
+          else
+            global_config
+          end
+        end
+        private
+        def global_config
+          @global_config ||= Global.new
+        end
+      end
+
       attr_accessor :adapter, :disable
 
       def initialize

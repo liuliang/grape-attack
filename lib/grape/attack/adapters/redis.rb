@@ -52,7 +52,7 @@ module Grape
         end
 
         def url
-          ENV['REDIS_URL'] || 'redis://localhost:6379/0'
+          ::Grape::Attack::Configuration.global.redis || ENV['REDIS_URL'] || 'redis://localhost:6379/0'
         end
 
       end
